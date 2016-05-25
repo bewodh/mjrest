@@ -1,7 +1,9 @@
 <?php 
 namespace Bewotec\Rest\Client;
 
-class Folder {
+use Bewotec\Rest\Client\Baseclient as BaseClient;
+
+class Folder extends BaseClient {
     
     public function get()
     {
