@@ -1,5 +1,5 @@
 <?php 
-namespace Myjack\Rest;
+namespace Bewotec\Rest;
 
 use DateTime;
 

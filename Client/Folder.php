@@ -1,7 +1,7 @@
 <?php 
-namespace Myjack\Rest;
+namespace Bewotec\Rest\Folder;
 
-class Webcode {
+class Folder {
     
     public function get()
     {
