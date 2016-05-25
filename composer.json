@@ -8,7 +8,7 @@
   },
   "autoload": {
         "psr-4": {
-            "Myjack\\Rest\\": "./"
+            "Bewotec\\Rest\\": "./"
         }
     },
   "license" : "BSD-3-Clause",
