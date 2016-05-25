@@ -1,5 +1,5 @@
 <?php 
-namespace Bewotec\Rest\Folder;
+namespace Bewotec\Rest\Client;
 
 class Folder {
     
