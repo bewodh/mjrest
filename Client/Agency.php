@@ -46,5 +46,51 @@ class Agency extends BaseClient {
 	
 	    return $xml;
 	}
+	
+	/*
+	 * Globale Angebote laden
+	 */
+	public function getAgencyOffers($webcode=0)
+	{
+	    $recource = "/service/agency/".$webcode."/offers";
+	    $clientUrl = $this->getClientUri($recource);
+	
+	    $xml = $this->doRequest($clientUrl, 'GET', array(), array(), array(), null, false, true);
+	
+	    return $xml;
+	}
+	
+	/*
+	 * Logo der Unit abrufen
+	 */
+	public function cmsLogo($unit=0)
+	{
+	    $resource = "/service/cms/logo?agencyId=".$unit;
+	    $clientUrl = $this->getClientUri($resource);
+	
+	    $body = $this->doRequest($clientUrl, 'GET', array(), array(), array(), null, false);
+	
+	    if ($body != "") {
+	        $im = imagecreatefromstring( $body );
+	    } else {
+	        $im = FALSE;
+	    }
+	
+	    if ($im !== false) {
+	        ob_start();
+	        // generate the byte stream
+	        imagejpeg($im);
+	        // and finally retrieve the byte stream
+	        $rawImageBytes = ob_get_clean();
+	        //echo "<img src='data:image/jpeg;base64," . base64_encode( $rawImageBytes ) . "' />";
+	    }
+	    else {
+	        $rawImageBytes = "";
+	    }
+	
+	    $rawImageBytes = base64_encode($rawImageBytes);
+	
+	    return $rawImageBytes;
+	}
     
 }

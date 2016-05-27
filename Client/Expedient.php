@@ -27,4 +27,16 @@ class Expedient extends BaseClient {
         return $xml;
     }
     
+    /*
+     * Mitarbeiter abrufen
+     */
+    public function getAgent($userId=0)
+    {
+        $resource = "/service/cms/user/".$userId;
+        $clientUrl = $this->getClientUri($resource);
+    
+        $xml = $this->doRequest($clientUrl, 'GET', array(), array(), array(), null, false);
+    
+        return $xml;
+    }
 }
