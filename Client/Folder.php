@@ -140,6 +140,22 @@ class Folder extends BaseClient {
 	}
 	
 	/*
+	 * mobile: Folder einer Gruppe laden
+	 * Gruppen von myJACK Bereich Buchhaltung - Kostenstellen
+	 * 
+	 */
+	public function getGroupFolders($unit=0, $group=0)
+	{
+	    $recource = "/service/mobile/folder/offers/group/".$group;
+	    $clientUrl = $this->getClientUri($recource);
+	
+	    $header['agency'] = $unit;
+	    $xml = $this->doRequest($clientUrl, 'GET', $header, array(), array(), null, false, true);
+	
+	    return $xml;
+	}
+	
+	/*
 	 * Vorgang suchen
 	 */
 	public function folderFind($unit=0, $data=array())
