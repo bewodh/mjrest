@@ -146,6 +146,7 @@ class Folder extends BaseClient {
 	 */
 	public function getGroupFolders($unit=0, $group=0)
 	{
+	    $group = rawurlencode($group);
 	    $recource = "/service/mobile/folder/offers/group/".$group;
 	    $clientUrl = $this->getClientUri($recource);
 	
