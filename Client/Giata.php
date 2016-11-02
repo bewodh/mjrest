@@ -14,7 +14,7 @@ class Giata extends BaseClient {
 	    $clientUrl = $this->getClientUri($recource);
 	    
 	    $header['agency'] = $unit;
-	    $response = $this->doRequest($clientUrl, 'GET', $header, array(), array(), null, false, true);
+	    $response = $this->doRequest($clientUrl, 'GET', $header, array(), array(), null, false, true, false, false, "GIATA Daten - Vorgang");
 
 	    return $response;
 	}
@@ -28,7 +28,7 @@ class Giata extends BaseClient {
 	    $clientUrl = $this->getClientUri($recource);
 	
 	    $header['agency'] = $unit;
-	    $response = $this->doRequest($clientUrl, 'GET', $header, array(), array(), null, false, true);
+	    $response = $this->doRequest($clientUrl, 'GET', $header, array(), array(), null, false, true, false, false, "GIATA Daten - Leistungsdetail");
 	
 	    return $response;
 	}

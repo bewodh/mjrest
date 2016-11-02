@@ -4,7 +4,15 @@ namespace Bewotec\Rest\Client;
 use Bewotec\Rest\Client\Baseclient as BaseClient;
 
 class Agency extends BaseClient {
-    
+    public function getA($webcode=0)
+    {
+        $recource = "/service/mobile/agency/folder/".$webcode;
+        $clientUrl = $this->getClientUri($recource);
+
+        $xml = $this->doRequest($clientUrl, 'GET', array(), array(), array(), null, false, true, false, false, "Agentur ID");
+
+        return $xml;
+    }
     /*
 	 * mobile: Agentur Daten laden
 	 */
@@ -13,14 +21,14 @@ class Agency extends BaseClient {
 	    if($webcode != "undefined") {
     	    $recource = "/service/mobile/agency/webcode/".$webcode;
     	    $clientUrl = $this->getClientUri($recource);
-    	
-    	    $xml = $this->doRequest($clientUrl, 'GET', array(), array(), array(), null, false, true);
+
+    	    $xml = $this->doRequest($clientUrl, 'GET', array(), array(), array(), null, false, true, false, false, "Agentur Details");
 	    } else {
 	        $xml = "";
 	    }
 	    return $xml;
 	}
-	
+
 	/*
 	 * mobile: Agentur Daten laden, anhand Vorgangs-WEB-Code
 	 */
@@ -28,12 +36,12 @@ class Agency extends BaseClient {
 	{
 	    $recource = "/service/mobile/agency/folder/".$webcode;
 	    $clientUrl = $this->getClientUri($recource);
-	
-	    $xml = $this->doRequest($clientUrl, 'GET', array(), array(), array(), null, false, true);
-	     
+
+	    $xml = $this->doRequest($clientUrl, 'GET', array(), array(), array(), null, false, true, false, false, "Agentur ID");
+
 	    return $xml;
 	}
-	
+
 	/*
 	 * mobile: Agentur Details laden
 	 */
@@ -41,12 +49,12 @@ class Agency extends BaseClient {
 	{
 	    $recource = "/service/mobile/agency/id/".$unit;
 	    $clientUrl = $this->getClientUri($recource);
-	
+
 	    $xml = $this->doRequest($clientUrl, 'GET', array(), array(), array(), null, false, true);
-	
+
 	    return $xml;
 	}
-	
+
 	/*
 	 * Globale Angebote laden
 	 */
@@ -54,12 +62,12 @@ class Agency extends BaseClient {
 	{
 	    $recource = "/service/agency/".$webcode."/offers";
 	    $clientUrl = $this->getClientUri($recource);
-	
+
 	    $xml = $this->doRequest($clientUrl, 'GET', array(), array(), array(), null, false, true);
-	
+
 	    return $xml;
 	}
-	
+
 	/*
 	 * Logo der Unit abrufen
 	 */
@@ -67,15 +75,15 @@ class Agency extends BaseClient {
 	{
 	    $resource = "/service/cms/logo?agencyId=".$unit;
 	    $clientUrl = $this->getClientUri($resource);
-	
+
 	    $body = $this->doRequest($clientUrl, 'GET', array(), array(), array(), null, false);
-	
+
 	    if ($body != "") {
 	        $im = imagecreatefromstring( $body );
 	    } else {
 	        $im = FALSE;
 	    }
-	
+
 	    if ($im !== false) {
 	        ob_start();
 	        // generate the byte stream
@@ -87,9 +95,9 @@ class Agency extends BaseClient {
 	    else {
 	        $rawImageBytes = "";
 	    }
-	
+
 	    $rawImageBytes = base64_encode($rawImageBytes);
-	
+
 	    return $rawImageBytes;
 	}
     

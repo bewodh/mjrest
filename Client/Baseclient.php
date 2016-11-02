@@ -74,12 +74,17 @@ class Baseclient {
 		return $clientUrl;
 	}
 	
-	public function doRequest($url, $method = 'POST', $headers=array(),
-	    $post=array(), $get=array(), $raw=null, $isXml = true, $isJson = false, $showRequest = false, $showAnswer = false) {
+	public function doRequest(
+	    $url, $method = 'POST', $headers=array(),
+	    $post=array(), $get=array(), $raw=null,
+        $isXml = true, $isJson = false,
+        $showRequest = false, $showAnswer = false,
+        $descriptionRequest = "nicht definierte Abfrage"
+    ) {
 	         
 	        // Token holen
 	        $this->token = $this->getToken();
-	
+
 	        //\Zend\Debug\Debug::dump($token);
 	        //\Zend\Debug\Debug::dump($url);
 	        //\Zend\Debug\Debug::dump($isXml);
